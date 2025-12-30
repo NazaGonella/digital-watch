@@ -14,7 +14,11 @@ function init() {
     f91w.addSegmentDisplay(secondsTensDisplay, 0, {x:450+150, y:200}, 0.5);
     f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:450+150+(125/2), y:200}, 0.5);
 
+    f91w.addSegmentDisplay(weekdayADisplay, 5, {x:25, y:325}, 0.5);
+    f91w.addSegmentDisplay(weekdayBDisplay, 5, {x:25+75, y:325}, 0.5);
+
     f91w.draw(ctx);
+
 }
 
 let running = true;

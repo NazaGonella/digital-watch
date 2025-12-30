@@ -82,10 +82,74 @@ class SegmentDisplay {
                 }
             } break;
             case DisplayType.WEEKDAY_A: {
-
+                for (let s = 0; s < glyph.length; s++) {
+                    let color = glyph[s] ? "#0F1A0F" : "#8E9A78";
+                    let gap = 4 * (1/scale);
+                    switch (s) {
+                        case 0: {
+                            drawPolygon(ctx, x, y, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color, scale);
+                        } break;
+                        case 1: {
+                            drawPolygon(ctx, x + 100*scale, y, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale, true);
+                        } break;
+                        case 2: {
+                            drawPolygon(ctx, x+100*scale, y+100*scale, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale, true);
+                        } break;
+                        case 3: {
+                            drawPolygon(ctx, x, y+200*scale, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color, scale, false, true);
+                        } break;
+                        case 4: {
+                            drawPolygon(ctx, x, y+100*scale, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale);
+                        } break;
+                        case 5: {
+                            drawPolygon(ctx, x, y, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale);
+                        } break;
+                        case 6: {
+                            drawPolygon(ctx, x, y+100*scale, [[0+gap*2, 0], [gap*2 + 25/2, 25 / 2], [100 - gap*2 - 25/2, 25 / 2], [ 100-gap*2, 0], [100 - gap*2 - 25/2, -25 / 2], [gap*2 + 25/2, -25 / 2]], color, scale, false, true);
+                        } break;
+                        case 7: {
+                            drawPolygon(ctx, x+(100/2-25/2)*scale, y+(25)*scale, [[0,0+gap], [25, 0+gap], [25, 25+25-gap], [0, 25+25-gap]], color, scale);
+                        } break;
+                        case 8: {
+                            drawPolygon(ctx, x+(100/2-25/2)*scale, y+(100+25)*scale, [[0,0+gap], [25, 0+gap], [25, 25+25-gap], [0, 25+25-gap]], color, scale);
+                        } break;
+                        case 9: {
+                            drawPolygon(ctx, x+(-25-gap)*scale, y+(200-25)*scale, [[0,0], [25,0], [25,25], [0,25]], color, scale);
+                        } break;
+                    }
+                }
             } break;
             case DisplayType.WEEKDAY_B: {
-
+                for (let s = 0; s < glyph.length; s++) {
+                    let color = glyph[s] ? "#0F1A0F" : "#8E9A78";
+                    let gap = 4 * (1/scale);
+                    switch (s) {
+                        case 0: {
+                            drawPolygon(ctx, x, y, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color, scale);
+                        } break;
+                        case 1: {
+                            drawPolygon(ctx, x + 100*scale, y, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale, true);
+                        } break;
+                        case 2: {
+                            drawPolygon(ctx, x+100*scale, y+100*scale, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale, true);
+                        } break;
+                        case 3: {
+                            drawPolygon(ctx, x, y+200*scale, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color, scale, false, true);
+                        } break;
+                        case 4: {
+                            drawPolygon(ctx, x, y+100*scale, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale);
+                        } break;
+                        case 5: {
+                            drawPolygon(ctx, x, y, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale);
+                        } break;
+                        case 6: {
+                            drawPolygon(ctx, x, y+100*scale, [[0+gap*2, 0], [gap*2 + 25/2, 25 / 2], [100 - gap*2 - 25/2, 25 / 2], [ 100-gap*2, 0], [100 - gap*2 - 25/2, -25 / 2], [gap*2 + 25/2, -25 / 2]], color, scale, false, true);
+                        } break;
+                        case 7: {
+                            drawPolygon(ctx, x+(-25-gap)*scale, y, [[0,0], [25,0], [25,25], [0,25]], color, scale);
+                        } break;
+                    }
+                }
             } break;
         }
     }
