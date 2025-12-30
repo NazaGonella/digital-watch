@@ -4,38 +4,41 @@ canvas.width = 800;
 canvas.height = 600;
 
 const ctx = canvas.getContext("2d");
+const f91w = new WatchLayout();
 
 function init() {
-    hoursTens24Display.draw(ctx, 100, 100, 1);
-    hoursUnits24Display.draw(ctx, 100 + 125, 100, 1);
-    minutesTensDisplay.draw(ctx, 225 + 175, 100, 1);
-    minutesUnitsDisplay.draw(ctx, 225 + 175 + 125, 100, 1);
-    secondsTensDisplay.draw(ctx, 100, 325, 0.5);
-    secondsUnitsDisplay.draw(ctx, 225, 325, 0.5);
+    f91w.addSegmentDisplay(hoursTens24Display, 0, {x:100, y:100}, 1);
+    f91w.addSegmentDisplay(hoursUnits24Display, 1, {x:225, y:100}, 1);
+    f91w.addSegmentDisplay(minutesTensDisplay, 2, {x:400, y:100}, 1);
+    f91w.addSegmentDisplay(minutesUnitsDisplay, 6, {x:525, y:100}, 1);
+    f91w.addSegmentDisplay(secondsTensDisplay, 0, {x:100, y:325}, 1);
+    f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:225, y:325}, 1);
+
+    f91w.draw(ctx);
 }
 
+let running = false;
 let last = performance.now();
 
 function loop(now) {
     const delta = now - last;
     last = now;
 
-    hoursTens24Display.update(delta);
-    hoursUnits24Display.update(delta);
-    minutesTensDisplay.update(delta);
-    minutesUnitsDisplay.update(delta);
-    secondsTensDisplay.update(delta);
-    secondsUnitsDisplay.update(delta);
-
-    hoursTens24Display.draw(ctx, 100, 100, 1);
-    hoursUnits24Display.draw(ctx, 100 + 125, 100, 1);
-    minutesTensDisplay.draw(ctx, 225 + 175, 100, 1);
-    minutesUnitsDisplay.draw(ctx, 225 + 175 + 125, 100, 1);
-    secondsTensDisplay.draw(ctx, 100, 325, 0.5);
-    secondsUnitsDisplay.draw(ctx, 225, 325, 0.5);
+    if (running) {
+        f91w.update(delta);
+        f91w.draw(ctx);
+    }
 
     requestAnimationFrame(loop);
 }
+
+window.addEventListener("keydown", (event) => {
+    if (event.code == "Space") {
+        running = !running;
+        console.log(running);
+    }
+});
+
 
 init();
 requestAnimationFrame(loop);
