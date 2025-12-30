@@ -66,7 +66,7 @@ const hoursTens12Display = new DisplayController(hoursTens12.map(k => gDecSeven[
 const hoursUnits12Display = new DisplayController(hoursUnits12.map(k => gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
 const hoursTens24Display = new DisplayController(hoursTens24.map(k => gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
 const hoursUnits24Display = new DisplayController(hoursUnits24.map(k => gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
-const minutesTensDisplay = new DisplayController(minutesTens.map(k => gDecSeven[k]), 1000 * 60, DisplayType.SEVEN);
+const minutesTensDisplay = new DisplayController(minutesTens.map(k => gDecSeven[k]), 1000 * 60 * 10, DisplayType.SEVEN);
 const minutesUnitsDisplay = new DisplayController(minutesUnits.map(k => gDecSeven[k]), 1000 * 60, DisplayType.SEVEN);
-const secondsTensDisplay = new DisplayController(secondsTens.map(k => gDecSeven[k]), 1000, DisplayType.SEVEN);
+const secondsTensDisplay = new DisplayController(secondsTens.map(k => gDecSeven[k]), 1000 * 10, DisplayType.SEVEN);
 const secondsUnitsDisplay = new DisplayController(secondsUnits.map(k => gDecSeven[k]), 1000, DisplayType.SEVEN);

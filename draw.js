@@ -9,9 +9,7 @@ function drawPolygon(ctx, ox, oy, points, color=null, flipH = false, flipV = fal
     const sx = flipH ? -1 : 1;
     const sy = flipV ? -1 : 1;
 
-    if (color != null) {
-        ctx.fillStyle = color;
-    }
+    if (color != null) ctx.fillStyle = color;
 
     ctx.moveTo(
         ox + points[0][0] * sx,

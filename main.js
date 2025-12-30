@@ -5,15 +5,37 @@ canvas.height = 600;
 
 const ctx = canvas.getContext("2d");
 
-hoursUnits24Display.draw(ctx, 100, 100, 1);
-hoursTens24Display.draw(ctx, 225, 100, 1);
+function init() {
+    hoursTens24Display.draw(ctx, 100, 100, 1);
+    hoursUnits24Display.draw(ctx, 100 + 125, 100, 1);
+    minutesTensDisplay.draw(ctx, 225 + 175, 100, 1);
+    minutesUnitsDisplay.draw(ctx, 225 + 175 + 125, 100, 1);
+    secondsTensDisplay.draw(ctx, 100, 325, 0.5);
+    secondsUnitsDisplay.draw(ctx, 225, 325, 0.5);
+}
 
-window.addEventListener("keydown", e => {
-    if (e.code === "Space") {
-        clear(canvas);
-        hoursUnits24Display.update();
-        hoursTens24Display.update();
-        hoursUnits24Display.draw(ctx, 225, 100, 1);
-        hoursTens24Display.draw(ctx, 100, 100, 1);
-    }
-});
+let last = performance.now();
+
+function loop(now) {
+    const delta = now - last;
+    last = now;
+
+    hoursTens24Display.update(delta);
+    hoursUnits24Display.update(delta);
+    minutesTensDisplay.update(delta);
+    minutesUnitsDisplay.update(delta);
+    secondsTensDisplay.update(delta);
+    secondsUnitsDisplay.update(delta);
+
+    hoursTens24Display.draw(ctx, 100, 100, 1);
+    hoursUnits24Display.draw(ctx, 100 + 125, 100, 1);
+    minutesTensDisplay.draw(ctx, 225 + 175, 100, 1);
+    minutesUnitsDisplay.draw(ctx, 225 + 175 + 125, 100, 1);
+    secondsTensDisplay.draw(ctx, 100, 325, 0.5);
+    secondsUnitsDisplay.draw(ctx, 225, 325, 0.5);
+
+    requestAnimationFrame(loop);
+}
+
+init();
+requestAnimationFrame(loop);

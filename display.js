@@ -9,6 +9,7 @@ class DisplayController {
     #refreshRateMs;
     #type;
     #idx;
+    #internalTimer;
 
     constructor(glyphs, refreshRateMs, type) {
         console.assert(Array.isArray(glyphs), "glyphs must be an array.");
@@ -39,6 +40,7 @@ class DisplayController {
         this.#refreshRateMs = refreshRateMs;
         this.#type = type;
         this.#idx = 0;
+        this.#internalTimer = 0;
     }
 
     draw(ctx, x, y, scale) {
@@ -82,7 +84,11 @@ class DisplayController {
         }
     }
 
-    update() {
-        this.#idx = (this.#idx + 1) % this.#glyphs.length;
+    update(delta) {
+        this.#internalTimer += delta;
+        if (this.#internalTimer >= this.#refreshRateMs) {
+            this.#idx = (this.#idx + 1) % this.#glyphs.length;
+            this.#internalTimer -= this.#refreshRateMs;
+        }
     }
 }
