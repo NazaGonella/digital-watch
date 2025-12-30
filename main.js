@@ -14,8 +14,8 @@ function init() {
     f91w.addSegmentDisplay(secondsTensDisplay, 0, {x:450+150, y:200}, 0.5);
     f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:450+150+(125/2), y:200}, 0.5);
 
-    f91w.addSegmentDisplay(weekdayADisplay, 5, {x:25, y:325}, 0.5);
-    f91w.addSegmentDisplay(weekdayBDisplay, 5, {x:25+75, y:325}, 0.5);
+    f91w.addSegmentDisplay(weekdayADisplay, 3, {x:25, y:325}, 0.5);
+    f91w.addSegmentDisplay(weekdayBDisplay, 3, {x:25+75, y:325}, 0.5);
 
     f91w.draw(ctx);
 
@@ -32,6 +32,22 @@ function loop(now) {
         f91w.update(delta);
         f91w.draw(ctx);
     }
+
+
+    let x = 225;
+    let y = 325;
+    let scale = 1;
+    let color = "#0F1A0F";
+    let gap = 4 * (1/scale);
+    let segW = 20;
+    let totalWidth = segW * 5;
+    drawPolygon(ctx, x, y, [[0+gap, 0], [segW+gap, segW], [totalWidth-segW-gap, segW], [totalWidth-gap, 0]], color, scale); // A
+    drawPolygon(ctx, x + totalWidth*scale, y, [[0, 0+gap], [segW, segW+gap], [segW, totalWidth-segW-gap], [0, totalWidth-gap]], color, scale, true); // B
+    drawPolygon(ctx, x+totalWidth*scale, y+totalWidth*scale, [[0, 0+gap], [segW, segW+gap], [segW, totalWidth-segW-gap], [0, totalWidth-gap]], color, scale, true); // C
+    drawPolygon(ctx, x, y+totalWidth*2*scale, [[0+gap, 0], [segW+gap, segW], [totalWidth-segW-gap, segW], [totalWidth-gap, 0]], color, scale, false, true);    // D
+    drawPolygon(ctx, x, y+totalWidth*scale, [[0, 0+gap], [segW, segW+gap], [segW, totalWidth-segW-gap], [0, totalWidth-gap]], color, scale); // E
+    drawPolygon(ctx, x, y, [[0, 0+gap], [segW, segW+gap], [segW, totalWidth-segW-gap], [0, totalWidth-gap]], color, scale); // F
+    drawPolygon(ctx, x, y+totalWidth*scale, [[0+gap*2, 0], [gap*2 + segW/2, segW/2], [totalWidth - gap*2 - segW/2, segW/2], [totalWidth-gap*2, 0], [totalWidth - gap*2 - segW/2, -segW/2], [gap*2 + segW/2, -segW/2]], color, scale, false, true); // G
 
     requestAnimationFrame(loop);
 }
