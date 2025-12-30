@@ -58,25 +58,25 @@ class SegmentDisplay {
                     let gap = 5;
                     switch (s) {
                         case 0: {
-                            drawPolygon(ctx, x, y, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color); // A
+                            drawPolygon(ctx, x, y, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color, scale); // A
                         } break;
                         case 1: {
-                            drawPolygon(ctx, x + 100, y, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, true); // B
+                            drawPolygon(ctx, x + 100*scale, y, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale, true); // B
                         } break;
                         case 2: {
-                            drawPolygon(ctx, x+100, y+100, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, true); // C
+                            drawPolygon(ctx, x+100*scale, y+100*scale, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale, true); // C
                         } break;
                         case 3: {
-                            drawPolygon(ctx, x, y+200, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color, false, true);    // D
+                            drawPolygon(ctx, x, y+200*scale, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color, scale, false, true);    // D
                         } break;
                         case 4: {
-                            drawPolygon(ctx, x, y+100, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color); // E
+                            drawPolygon(ctx, x, y+100*scale, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale); // E
                         } break;
                         case 5: {
-                            drawPolygon(ctx, x, y, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color); // F
+                            drawPolygon(ctx, x, y, [[0, 0+gap], [25, 25+gap], [25, 75-gap], [0, 100-gap]], color, scale); // F
                         } break;
                         case 6: {
-                            drawPolygon(ctx, x, y+100, [[0+gap*2, 0], [gap*2 + 25/2, 25 / 2], [100 - gap*2 - 25/2, 25 / 2], [ 100-gap*2, 0], [100 - gap*2 - 25/2, -25 / 2], [gap*2 + 25/2, -25 / 2]], color, false, true); // G
+                            drawPolygon(ctx, x, y+100*scale, [[0+gap*2, 0], [gap*2 + 25/2, 25 / 2], [100 - gap*2 - 25/2, 25 / 2], [ 100-gap*2, 0], [100 - gap*2 - 25/2, -25 / 2], [gap*2 + 25/2, -25 / 2]], color, scale, false, true); // G
                         } break;
                     }
                 }

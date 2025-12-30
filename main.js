@@ -7,17 +7,17 @@ const ctx = canvas.getContext("2d");
 const f91w = new WatchLayout();
 
 function init() {
-    f91w.addSegmentDisplay(hoursTens24Display, 0, {x:100, y:100}, 1);
-    f91w.addSegmentDisplay(hoursUnits24Display, 1, {x:225, y:100}, 1);
-    f91w.addSegmentDisplay(minutesTensDisplay, 2, {x:400, y:100}, 1);
-    f91w.addSegmentDisplay(minutesUnitsDisplay, 6, {x:525, y:100}, 1);
-    f91w.addSegmentDisplay(secondsTensDisplay, 0, {x:100, y:325}, 1);
-    f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:225, y:325}, 1);
+    f91w.addSegmentDisplay(hoursTens24Display, 0, {x:25, y:100}, 1);
+    f91w.addSegmentDisplay(hoursUnits24Display, 1, {x:25+125, y:100}, 1);
+    f91w.addSegmentDisplay(minutesTensDisplay, 2, {x:150+175, y:100}, 1);
+    f91w.addSegmentDisplay(minutesUnitsDisplay, 6, {x:150+175+125, y:100}, 1);
+    f91w.addSegmentDisplay(secondsTensDisplay, 0, {x:450+175, y:200}, 0.5);
+    f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:450+175+(125/2), y:200}, 0.5);
 
     f91w.draw(ctx);
 }
 
-let running = false;
+let running = true;
 let last = performance.now();
 
 function loop(now) {
@@ -35,7 +35,6 @@ function loop(now) {
 window.addEventListener("keydown", (event) => {
     if (event.code == "Space") {
         running = !running;
-        console.log(running);
     }
 });
 
