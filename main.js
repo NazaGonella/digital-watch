@@ -11,8 +11,8 @@ function init() {
     f91w.addSegmentDisplay(hoursUnits24Display, 1, {x:25+125, y:100}, 1);
     f91w.addSegmentDisplay(minutesTensDisplay, 2, {x:150+175, y:100}, 1);
     f91w.addSegmentDisplay(minutesUnitsDisplay, 6, {x:150+175+125, y:100}, 1);
-    f91w.addSegmentDisplay(secondsTensDisplay, 0, {x:450+175, y:200}, 0.5);
-    f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:450+175+(125/2), y:200}, 0.5);
+    f91w.addSegmentDisplay(secondsTensDisplay, 0, {x:450+150, y:200}, 0.5);
+    f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:450+150+(125/2), y:200}, 0.5);
 
     f91w.draw(ctx);
 }

@@ -55,7 +55,7 @@ class SegmentDisplay {
             case DisplayType.SEVEN: {
                 for (let s = 0; s < glyph.length; s++) {
                     let color = glyph[s] ? "#0F1A0F" : "#8E9A78";
-                    let gap = 5;
+                    let gap = 4 * (1/scale);
                     switch (s) {
                         case 0: {
                             drawPolygon(ctx, x, y, [[0+gap, 0], [25+gap, 25], [75-gap, 25], [100-gap, 0]], color, scale); // A
