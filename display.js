@@ -53,18 +53,19 @@ class SegmentDisplay {
      * @param {0|1|2|3} dir - direction from this display to neighbor display (0=up, 1=right, 2=down, 3=left).
      * @returns {SegmentDisplay} The neighbor display.
      */
-    addNeighborDisplay(neighborDisplay, dir) {
-        console.assert(neighborDisplay, "invalid neighbor display.");
-        console.assert(dir >= 0 && dir <= 4 && Number.isInteger(dir), "invalid direction.");
-        this.nDisplays[dir] = neighborDisplay;
-        return neighborDisplay;
-    }
+    // addNeighborDisplay(neighborDisplay, dir) {
+    //     console.assert(neighborDisplay, "invalid neighbor display.");
+    //     console.assert(dir >= 0 && dir <= 4 && Number.isInteger(dir), "invalid direction.");
+    //     this.nDisplays[dir] = neighborDisplay;
+    //     return neighborDisplay;
+    // }
 
     draw(ctx) {
         const scale = this.#scale;
         const x = this.#position.x;
         const y = this.#position.y;
         let glyph = this.#glyphs[this.idx];
+        const type = this.#type;
         switch (this.#type) {
             case DisplayType.SEVEN: {
                 const gap = 4 * (1/scale);
@@ -203,65 +204,81 @@ class SegmentDisplay {
 
 
 class WatchLayout {
-    #segmentDisplays = [];
-    #modes = {
-        currentMode:null,
-        start:null,
-        last:null
-    };
+    #activeMode = null;
+    #leadMode = null;
 
-    set currentMode(mode) {
-        this.#modes.currentMode = mode;
+    setMode(mode) {
+        this.#activeMode = mode;
+    }
+
+    setNextMode() {
+        this.#activeMode = this.#activeMode.next;
     }
 
     addSegmentDisplay(segmentDisplay, idx, position, scale) {
+        if (!this.#activeMode) {
+            console.log("current mode not set.");
+            return;
+        }
+
         segmentDisplay.idx = idx;
         segmentDisplay.position = position;
         segmentDisplay.scale = scale;
     
-        this.#segmentDisplays.push(segmentDisplay);
-        this.currentState = 0;
+        this.#activeMode.segmentDisplays.push(segmentDisplay);
     }
 
     addMode(name) {
-        const newMode = {name:name, prev:null, next:null};
-        const modes = this.#modes;
+        const newMode = {name:name, prev:null, next:null, segmentDisplays:[]};
 
-        if (modes.last) {
-            modes.last.next = newMode;
-            newMode.prev = modes.last;
+        if (!this.#leadMode) {
+            newMode.prev = newMode;
+            newMode.next = newMode;
+            this.#leadMode = newMode;
+        } else {
+            newMode.prev = this.#leadMode;
+            newMode.next = this.#leadMode.next;
+            this.#leadMode.next.prev = newMode;
+            this.#leadMode.next = newMode;
+            this.#leadMode = newMode;
         }
-
-        modes.last = newMode;
-        if (!modes.start) modes.start = newMode;
 
         return newMode;
     }
 
-    deleteMode(mode) {
-        const modes = this.#modes;
-        if (modes.start == mode) {
-            modes.start = mode.next;
-        }
-        if (modes.last == mode) {
-            modes.last = mode.prev;
-        }
-        if (mode.next) {
-            mode.next.prev = mode.prev;
-        }
-        if (mode.prev) {
-            mode.prev.next = mode.next;
-        }
+    // deleteMode(mode) {
+    //     if (this.#leadMode == mode) {
+    //         this.#leadMode = mode.prev;
+    //     }
+    //     if (mode.next) {
+    //         mode.next.prev = mode.prev;
+    //     }
+    //     if (mode.prev) {
+    //         mode.prev.next = mode.next;
+    //     }
+    // }
+
+    get activeMode() {
+        return this.#activeMode;
     }
 
     update(delta) {
-        for (const s of this.#segmentDisplays) {
+        if (!this.#activeMode) {
+            console.log("current mode not set.");
+            return;
+        }
+        for (const s of this.#activeMode.segmentDisplays) {
             s.update(delta);
         }
     }
 
     draw(ctx) {
-        for (const s of this.#segmentDisplays) {
+        if (!this.#activeMode) {
+            console.log("current mode not set.");
+            return;
+        }
+        const activeMode = this.#activeMode;
+        for (const s of this.#activeMode.segmentDisplays) {
             s.draw(ctx);
         }
     }
