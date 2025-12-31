@@ -41,9 +41,23 @@ class SegmentDisplay {
         this.#refreshRateMs = refreshRateMs;
         this.#type = type;
         this.#internalTimer = 0;
-        this.idx = startIdx;
         this.#position = {x:0, y:0};
         this.#scale = 1;
+        this.idx = startIdx;
+        this.nDisplays = [null, null, null, null];
+    }
+
+    /**
+     * Add a neighbor segment display to switch to.
+     * @param {SegmentDisplay} neighborDisplay - neighbor display.
+     * @param {0|1|2|3} dir - direction from this display to neighbor display (0=up, 1=right, 2=down, 3=left).
+     * @returns {SegmentDisplay} The neighbor display.
+     */
+    addNeighborDisplay(neighborDisplay, dir) {
+        console.assert(neighborDisplay, "invalid neighbor display.");
+        console.assert(dir >= 0 && dir <= 4 && Number.isInteger(dir), "invalid direction.");
+        this.nDisplays[dir] = neighborDisplay;
+        return neighborDisplay;
     }
 
     draw(ctx) {
