@@ -25,22 +25,33 @@ function init() {
     f91w.addSegmentDisplay(monthADisplay, 0, {x:xo+525+175+275, y:yo-75}, 0.5);
     f91w.addSegmentDisplay(monthBDisplay, 0, {x:xo+525+175+75+275, y:yo-75}, 0.5);
 
-    monthADisplay.addNeighborDisplay(monthBDisplay, 1);
+    hoursTens24Display.addNeighborDisplay(hoursUnits24Display, 1)
+        .addNeighborDisplay(minutesTensDisplay, 1).addNeighborDisplay(minutesUnitsDisplay, 1)
+        .addNeighborDisplay(secondsTensDisplay, 1).addNeighborDisplay(secondsUnitsDisplay, 1)
+        .addNeighborDisplay(weekdayADisplay, 1).addNeighborDisplay(weekdayBDisplay, 1)
+        .addNeighborDisplay(monthdayADisplay, 1).addNeighborDisplay(monthdayBDisplay, 1)
+        .addNeighborDisplay(monthADisplay, 1).addNeighborDisplay(monthBDisplay, 1);
 
     f91w.draw(ctx);
 
 }
 
-let running = true;
+let pause = false;
+let setting = false;
 let last = performance.now();
 
 function loop(now) {
     const delta = (now - last);
     last = now;
 
-    if (running) {
+    if (!pause) {
         f91w.update(delta);
         f91w.draw(ctx);
+
+    } else if (setting) {
+        console.log("setting");
+    } else {
+        console.log("pause");
     }
 
     requestAnimationFrame(loop);
@@ -48,7 +59,12 @@ function loop(now) {
 
 window.addEventListener("keydown", (event) => {
     if (event.code == "Space") {
-        running = !running;
+        if (setting) setting = false;
+        pause = !pause;
+    }
+    if (event.code == "KeyM") {
+        pause = !setting;
+        setting = !setting;
     }
 });
 

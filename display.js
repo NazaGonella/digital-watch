@@ -1,7 +1,7 @@
 const DisplayType = {
-    SEVEN: "seven",
-    WEEKDAY_A: "weekdayA",
-    WEEKDAY_B: "weekdayB",
+    SEVEN: 0,
+    WEEKDAY_A: 1,
+    WEEKDAY_B: 2,
 }
 
 class SegmentDisplay {
@@ -204,6 +204,15 @@ class SegmentDisplay {
 
 class WatchLayout {
     #segmentDisplays = [];
+    #modes = {
+        currentMode:null,
+        start:null,
+        last:null
+    };
+
+    set currentMode(mode) {
+        this.#modes.currentMode = mode;
+    }
 
     addSegmentDisplay(segmentDisplay, idx, position, scale) {
         segmentDisplay.idx = idx;
@@ -211,6 +220,38 @@ class WatchLayout {
         segmentDisplay.scale = scale;
     
         this.#segmentDisplays.push(segmentDisplay);
+        this.currentState = 0;
+    }
+
+    addMode(name) {
+        const newMode = {name:name, prev:null, next:null};
+        const modes = this.#modes;
+
+        if (modes.last) {
+            modes.last.next = newMode;
+            newMode.prev = modes.last;
+        }
+
+        modes.last = newMode;
+        if (!modes.start) modes.start = newMode;
+
+        return newMode;
+    }
+
+    deleteMode(mode) {
+        const modes = this.#modes;
+        if (modes.start == mode) {
+            modes.start = mode.next;
+        }
+        if (modes.last == mode) {
+            modes.last = mode.prev;
+        }
+        if (mode.next) {
+            mode.next.prev = mode.prev;
+        }
+        if (mode.prev) {
+            mode.prev.next = mode.next;
+        }
     }
 
     update(delta) {
