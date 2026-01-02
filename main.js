@@ -7,8 +7,6 @@ const ctx = canvas.getContext("2d");
 const f91w = new WatchLayout();
 const modeTime = f91w.addMode("TIME");
 const modeAlarm = f91w.addMode("ALARM");
-const modeStopwatch = f91w.addMode("STOPWATCH");
-const modeSetting = f91w.addMode("SETTING");
 
 function init() {
     const xo = 0;
