@@ -1,5 +1,5 @@
-import { WatchLayout } from "./display.js";
-import { clear } from "./draw.js";
+import { WatchLayout } from "./models/watch_layout.js";
+import { clear } from "./render/draw.js";
 import * as D from "./display_definitions.js";
 
 const BACKGROUND = "#9EAA84"
@@ -32,13 +32,6 @@ function init() {
     f91w.addSegmentDisplay(D.monthBDisplay, 0, {x:xo+525+175+75+275, y:yo-75}, 0.5);
     f91w.addSegmentDisplay(D.monthdayADisplay, 0, {x:xo+525+175, y:yo-75}, 0.5);
     f91w.setMode(modeTime);
-
-    // hoursTens24Display.addNeighborDisplay(hoursUnits24Display, 1)
-    //     .addNeighborDisplay(minutesTensDisplay, 1).addNeighborDisplay(minutesUnitsDisplay, 1)
-    //     .addNeighborDisplay(secondsTensDisplay, 1).addNeighborDisplay(secondsUnitsDisplay, 1)
-    //     .addNeighborDisplay(weekdayADisplay, 1).addNeighborDisplay(weekdayBDisplay, 1)
-    //     .addNeighborDisplay(monthdayADisplay, 1).addNeighborDisplay(monthdayBDisplay, 1)
-    //     .addNeighborDisplay(monthADisplay, 1).addNeighborDisplay(monthBDisplay, 1);
 
     f91w.draw(ctx);
 
