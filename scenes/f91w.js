@@ -18,14 +18,11 @@ const minutesUnitsDisplay = new SegmentDisplay(S.minutesUnits.map(k => G.gDecSev
 const secondsTensDisplay = new SegmentDisplay(S.secondsTens.map(k => G.gDecSeven[k]), 1000 * 10, DisplayType.SEVEN);
 const secondsUnitsDisplay = new SegmentDisplay(S.secondsUnits.map(k => G.gDecSeven[k]), 1000, DisplayType.SEVEN);
 
-export function initF91W() {
+export function initF91W(xo, yo) {
     const f91w = new WatchLayout();
     
     const modeTime = f91w.addMode("TIME");
-    const modeAlarm = f91w.addMode("ALARM");
-
-    const xo = 0;
-    const yo = 200;
+    // const modeAlarm = f91w.addMode("ALARM");
 
     f91w.setMode(modeTime);
     f91w.addSegmentDisplay(hoursTens24Display, 0, {x:xo+25, y:yo+100}, 1);
@@ -36,13 +33,10 @@ export function initF91W() {
     f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:xo+525+175+75, y:yo+225}, 0.5);
     f91w.addSegmentDisplay(weekdayADisplay, 3, {x:xo+25+275, y:yo-75}, 0.5);
     f91w.addSegmentDisplay(weekdayBDisplay, 3, {x:xo+25+75+(25/2)+275, y:yo-75}, 0.5);
-    f91w.setMode(modeAlarm);
     f91w.addSegmentDisplay(monthdayADisplay, 0, {x:xo+525+175, y:yo-75}, 0.5);
     f91w.addSegmentDisplay(monthdayBDisplay, 0, {x:xo+525+175+75, y:yo-75}, 0.5);
     f91w.addSegmentDisplay(monthADisplay, 0, {x:xo+525+175+275, y:yo-75}, 0.5);
     f91w.addSegmentDisplay(monthBDisplay, 0, {x:xo+525+175+75+275, y:yo-75}, 0.5);
-    f91w.addSegmentDisplay(monthdayADisplay, 0, {x:xo+525+175, y:yo-75}, 0.5);
-    f91w.setMode(modeTime);
 
     return f91w;
 }

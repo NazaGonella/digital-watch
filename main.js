@@ -8,11 +8,9 @@ canvas.height = 1080;
 
 const ctx = canvas.getContext("2d");
 
-let f91w = null;
+const f91w = initF91W(0, 100);
 
 function init() {
-    f91w = initF91W();
-
     f91w.draw(ctx);
 }
 
@@ -20,12 +18,12 @@ let pause = false;
 let last = performance.now();
 
 function loop(now) {
-    const delta = (now - last);
+    const delta = (now - last) * 50000;
     last = now;
 
     if (!pause) {
-        f91w.update(delta);
         clear(ctx, canvas, BACKGROUND);
+        f91w.update(delta);
         f91w.draw(ctx);
     }
 
