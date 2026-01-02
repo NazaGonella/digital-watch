@@ -115,3 +115,23 @@ const minutesTens =  [0, 1, 2, 3, 4, 5];
 const minutesUnits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const secondsTens =  [0, 1, 2, 3, 4, 5];
 const secondsUnits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+export {
+  gDecSeven,
+  gDayWeekdayA,
+  gDayWeekdayB,
+  monthA,
+  monthB,
+  monthdayA,
+  monthdayB,
+  weekdayA,
+  weekdayB,
+  hoursTens12,
+  hoursUnits12,
+  hoursTens24,
+  hoursUnits24,
+  minutesTens,
+  minutesUnits,
+  secondsTens,
+  secondsUnits,
+};

@@ -1,3 +1,7 @@
+import { WatchLayout } from "./display.js";
+import { clear } from "./draw.js";
+import * as D from "./display_definitions.js";
+
 const BACKGROUND = "#9EAA84"
 
 canvas.width = 1920;
@@ -13,20 +17,20 @@ function init() {
     const yo = 200;
 
     f91w.setMode(modeTime);
-    f91w.addSegmentDisplay(hoursTens24Display, 0, {x:xo+25, y:yo+100}, 1);
-    f91w.addSegmentDisplay(hoursUnits24Display, 1, {x:xo+25+150, y:yo+100}, 1);
-    f91w.addSegmentDisplay(minutesTensDisplay, 2, {x:xo+175+200, y:yo+100}, 1);
-    f91w.addSegmentDisplay(minutesUnitsDisplay, 6, {x:xo+175+200+150, y:yo+100}, 1);
-    f91w.addSegmentDisplay(secondsTensDisplay, 0, {x:xo+525+175, y:yo+225}, 0.5);
-    f91w.addSegmentDisplay(secondsUnitsDisplay, 0, {x:xo+525+175+75, y:yo+225}, 0.5);
-    f91w.addSegmentDisplay(weekdayADisplay, 3, {x:xo+25+275, y:yo-75}, 0.5);
-    f91w.addSegmentDisplay(weekdayBDisplay, 3, {x:xo+25+75+(25/2)+275, y:yo-75}, 0.5);
+    f91w.addSegmentDisplay(D.hoursTens24Display, 0, {x:xo+25, y:yo+100}, 1);
+    f91w.addSegmentDisplay(D.hoursUnits24Display, 1, {x:xo+25+150, y:yo+100}, 1);
+    f91w.addSegmentDisplay(D.minutesTensDisplay, 2, {x:xo+175+200, y:yo+100}, 1);
+    f91w.addSegmentDisplay(D.minutesUnitsDisplay, 6, {x:xo+175+200+150, y:yo+100}, 1);
+    f91w.addSegmentDisplay(D.secondsTensDisplay, 0, {x:xo+525+175, y:yo+225}, 0.5);
+    f91w.addSegmentDisplay(D.secondsUnitsDisplay, 0, {x:xo+525+175+75, y:yo+225}, 0.5);
+    f91w.addSegmentDisplay(D.weekdayADisplay, 3, {x:xo+25+275, y:yo-75}, 0.5);
+    f91w.addSegmentDisplay(D.weekdayBDisplay, 3, {x:xo+25+75+(25/2)+275, y:yo-75}, 0.5);
     f91w.setMode(modeAlarm);
-    f91w.addSegmentDisplay(monthdayADisplay, 0, {x:xo+525+175, y:yo-75}, 0.5);
-    f91w.addSegmentDisplay(monthdayBDisplay, 0, {x:xo+525+175+75, y:yo-75}, 0.5);
-    f91w.addSegmentDisplay(monthADisplay, 0, {x:xo+525+175+275, y:yo-75}, 0.5);
-    f91w.addSegmentDisplay(monthBDisplay, 0, {x:xo+525+175+75+275, y:yo-75}, 0.5);
-    f91w.addSegmentDisplay(monthdayADisplay, 0, {x:xo+525+175, y:yo-75}, 0.5);
+    f91w.addSegmentDisplay(D.monthdayADisplay, 0, {x:xo+525+175, y:yo-75}, 0.5);
+    f91w.addSegmentDisplay(D.monthdayBDisplay, 0, {x:xo+525+175+75, y:yo-75}, 0.5);
+    f91w.addSegmentDisplay(D.monthADisplay, 0, {x:xo+525+175+275, y:yo-75}, 0.5);
+    f91w.addSegmentDisplay(D.monthBDisplay, 0, {x:xo+525+175+75+275, y:yo-75}, 0.5);
+    f91w.addSegmentDisplay(D.monthdayADisplay, 0, {x:xo+525+175, y:yo-75}, 0.5);
     f91w.setMode(modeTime);
 
     // hoursTens24Display.addNeighborDisplay(hoursUnits24Display, 1)
@@ -49,10 +53,9 @@ function loop(now) {
 
     if (!pause) {
         f91w.update(delta);
-        clear(canvas);
+        clear(ctx, canvas, BACKGROUND);
         f91w.draw(ctx);
     }
-    console.log(f91w.activeMode.name);
 
     requestAnimationFrame(loop);
 }

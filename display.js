@@ -1,10 +1,12 @@
-const DisplayType = {
+import { drawPolygon } from "./draw.js";
+
+export const DisplayType = {
     SEVEN: 0,
     WEEKDAY_A: 1,
     WEEKDAY_B: 2,
 }
 
-class SegmentDisplay {
+export class SegmentDisplay {
     #glyphs;
     #refreshRateMs;
     #type;
@@ -203,7 +205,7 @@ class SegmentDisplay {
 }
 
 
-class WatchLayout {
+export class WatchLayout {
     #activeMode = null;
     #leadMode = null;
 

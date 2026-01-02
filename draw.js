@@ -1,9 +1,9 @@
-function clear(canvas) {
-    ctx.fillStyle = BACKGROUND;
+export function clear(ctx, canvas, bg) {
+    ctx.fillStyle = bg;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
-function drawPolygon(ctx, ox, oy, points, color=null, scale=1, flipH = false, flipV = false) {
+export function drawPolygon(ctx, ox, oy, points, color=null, scale=1, flipH = false, flipV = false) {
     ctx.beginPath();
     const sx = flipH ? -1 : 1;
     const sy = flipV ? -1 : 1;

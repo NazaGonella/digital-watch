@@ -1,14 +1,35 @@
-const monthADisplay = new SegmentDisplay(monthA.map(k => gDecSeven[k]), 1000 * 60 * 60 * 24, DisplayType.SEVEN)
-const monthBDisplay = new SegmentDisplay(monthB.map(k => gDecSeven[k]), 1000 * 60 * 60 * 24, DisplayType.SEVEN)
-const monthdayADisplay = new SegmentDisplay(monthdayA.map(k => gDecSeven[k]), 1000 * 60 * 60 * 24, DisplayType.SEVEN);
-const monthdayBDisplay = new SegmentDisplay(monthdayB.map(k => gDecSeven[k]), 1000 * 60 * 60 * 24, DisplayType.SEVEN);
-const weekdayADisplay = new SegmentDisplay(weekdayA.map(k => gDayWeekdayA[k]), 1000 * 60 * 60 * 24, DisplayType.WEEKDAY_A);
-const weekdayBDisplay = new SegmentDisplay(weekdayB.map(k => gDayWeekdayB[k]), 1000 * 60 * 60 * 24, DisplayType.WEEKDAY_B);
-const hoursTens12Display = new SegmentDisplay(hoursTens12.map(k => gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
-const hoursUnits12Display = new SegmentDisplay(hoursUnits12.map(k => gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
-const hoursTens24Display = new SegmentDisplay(hoursTens24.map(k => gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
-const hoursUnits24Display = new SegmentDisplay(hoursUnits24.map(k => gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
-const minutesTensDisplay = new SegmentDisplay(minutesTens.map(k => gDecSeven[k]), 1000 * 60 * 10, DisplayType.SEVEN);
-const minutesUnitsDisplay = new SegmentDisplay(minutesUnits.map(k => gDecSeven[k]), 1000 * 60, DisplayType.SEVEN);
-const secondsTensDisplay = new SegmentDisplay(secondsTens.map(k => gDecSeven[k]), 1000 * 10, DisplayType.SEVEN);
-const secondsUnitsDisplay = new SegmentDisplay(secondsUnits.map(k => gDecSeven[k]), 1000, DisplayType.SEVEN);
+import { SegmentDisplay } from "./display.js";
+import { DisplayType } from "./display.js";
+import * as DEF from "./definitions.js"
+
+const monthADisplay = new SegmentDisplay(DEF.monthA.map(k => DEF.gDecSeven[k]), 1000 * 60 * 60 * 24, DisplayType.SEVEN)
+const monthBDisplay = new SegmentDisplay(DEF.monthB.map(k => DEF.gDecSeven[k]), 1000 * 60 * 60 * 24, DisplayType.SEVEN)
+const monthdayADisplay = new SegmentDisplay(DEF.monthdayA.map(k => DEF.gDecSeven[k]), 1000 * 60 * 60 * 24, DisplayType.SEVEN);
+const monthdayBDisplay = new SegmentDisplay(DEF.monthdayB.map(k => DEF.gDecSeven[k]), 1000 * 60 * 60 * 24, DisplayType.SEVEN);
+const weekdayADisplay = new SegmentDisplay(DEF.weekdayA.map(k => DEF.gDayWeekdayA[k]), 1000 * 60 * 60 * 24, DisplayType.WEEKDAY_A);
+const weekdayBDisplay = new SegmentDisplay(DEF.weekdayB.map(k => DEF.gDayWeekdayB[k]), 1000 * 60 * 60 * 24, DisplayType.WEEKDAY_B);
+const hoursTens12Display = new SegmentDisplay(DEF.hoursTens12.map(k => DEF.gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
+const hoursUnits12Display = new SegmentDisplay(DEF.hoursUnits12.map(k => DEF.gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
+const hoursTens24Display = new SegmentDisplay(DEF.hoursTens24.map(k => DEF.gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
+const hoursUnits24Display = new SegmentDisplay(DEF.hoursUnits24.map(k => DEF.gDecSeven[k]), 1000 * 60 * 60, DisplayType.SEVEN);
+const minutesTensDisplay = new SegmentDisplay(DEF.minutesTens.map(k => DEF.gDecSeven[k]), 1000 * 60 * 10, DisplayType.SEVEN);
+const minutesUnitsDisplay = new SegmentDisplay(DEF.minutesUnits.map(k => DEF.gDecSeven[k]), 1000 * 60, DisplayType.SEVEN);
+const secondsTensDisplay = new SegmentDisplay(DEF.secondsTens.map(k => DEF.gDecSeven[k]), 1000 * 10, DisplayType.SEVEN);
+const secondsUnitsDisplay = new SegmentDisplay(DEF.secondsUnits.map(k => DEF.gDecSeven[k]), 1000, DisplayType.SEVEN);
+
+export {
+    monthADisplay,
+    monthBDisplay,
+    monthdayADisplay,
+    monthdayBDisplay,
+    weekdayADisplay,
+    weekdayBDisplay,
+    hoursTens12Display,
+    hoursUnits12Display,
+    hoursTens24Display,
+    hoursUnits24Display,
+    minutesTensDisplay,
+    minutesUnitsDisplay,
+    secondsTensDisplay,
+    secondsUnitsDisplay
+}
