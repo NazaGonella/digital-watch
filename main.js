@@ -1,5 +1,6 @@
 import { clear } from "./render/draw.js";
 import { initF91W } from "./scenes/f91w.js";
+import { initFlappy } from "./scenes/flappy_bird.js";
 
 const BACKGROUND = "#9EAA84"
 
@@ -8,7 +9,8 @@ canvas.height = 1080;
 
 const ctx = canvas.getContext("2d");
 
-const f91w = initF91W(0, 100);
+// const f91w = initF91W(0, 100);
+const f91w = initFlappy(0, 100);
 
 function init() {
     f91w.draw(ctx);
@@ -18,7 +20,7 @@ let pause = false;
 let last = performance.now();
 
 function loop(now) {
-    const delta = (now - last) * 50000;
+    const delta = (now - last);
     last = now;
 
     if (!pause) {

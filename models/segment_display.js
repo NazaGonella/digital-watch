@@ -179,6 +179,15 @@ export class SegmentDisplay {
         }
     }
 
+    clone() {
+        return new SegmentDisplay(
+            this.#glyphs,
+            this.#refreshRateMs,
+            this.#type,
+            this.idx
+        )
+    }
+
     update(delta) {
         this.#internalTimer += delta;
         if (this.#internalTimer >= this.#refreshRateMs) {

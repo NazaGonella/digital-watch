@@ -10,10 +10,14 @@ export class WatchLayout {
         this.#activeMode = this.#activeMode.next;
     }
 
-    addSegmentDisplay(segmentDisplay, idx, position, scale) {
+    addSegmentDisplay(segmentDisplay, idx, position, scale, copy=true) {
         if (!this.#activeMode) {
             console.log("current mode not set.");
             return;
+        }
+
+        if (copy) {
+            segmentDisplay = segmentDisplay.clone();
         }
 
         segmentDisplay.idx = idx;
